@@ -46,11 +46,17 @@ export default function Home(){
     return(
         <ContainerMain>
             <Header>
-                alfasoft contatos 
+                <span>
+                Alfasoft contatos 
+                </span>
             <Link to={'/signin'} onClick={() => localStorage.removeItem("session")}>Sair</Link>
             </Header>
             <ContainerContacts>
+                <Title>
+                    <h3>Contatos</h3>
             <Link to={'/createcontact'}>Adicionar</Link>
+
+                </Title>
                 <ListContacts>
                 {
                     contatos?.map( 
@@ -77,24 +83,39 @@ export default function Home(){
 }
 
 const ContainerMain = styled.div`
-    background-color: blue;
     width: 100vw;
     height: 100%;
+`
+const Title = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px 0 50px;
+    h3 {
+        font-size: 2rem;
+    }
+    
 `
 
 const Header = styled.div`
     height: 3rem;
     background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px 0 50px;
+
+    span {
+        font-size: 20px;
+    }
 `
 const ListContacts = styled.div`
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    background-color: green;
 `
 const CardInformations = styled.div`
     width: 20rem;
@@ -103,16 +124,13 @@ const CardInformations = styled.div`
     justify-content: space-evenly;
     align-items: center;
     border: beige solid 1px; 
-    background-color: aqua;
     .Photo{
-       background-color : purple;
        img{
         height: 141px;
         width: 141px;
        }
     }
     .Details{
-        background-color: pink;
         height: 141px;
         width: 141px;
         display: flex;
@@ -125,6 +143,5 @@ const CardInformations = styled.div`
    
 `
 const ContainerContacts = styled.div`
-    margin-top: 3rem;
-    background-color: yellow;
+    margin-top: 20px;
 `

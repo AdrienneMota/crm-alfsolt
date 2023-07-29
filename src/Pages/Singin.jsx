@@ -1,7 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
-import Login from "../api/auth"
 import loginAuth from "../api/auth"
 
 
@@ -35,7 +34,7 @@ export default function Signin(){
             <p>Login</p>
             <FormCard onSubmit={LoginUser}>
             <input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="Email"
                 value={data.user_name}
@@ -85,13 +84,6 @@ const ContainerForm = styled.div`
   @media (max-width: 768px) {
     border: none;
   }
-`
-const Title = styled.h1`
-  margin: 3.5rem 0px 2rem 0px;
-  font-size: 50px;
-  font-family: 'Alkatra', cursive;;
-  font-weight: bold;
-  color: #543f7b;
 `
 const FormCard = styled.form`
   width: 23rem;

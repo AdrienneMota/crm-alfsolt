@@ -42,7 +42,7 @@ export default function Singup() {
                     required="required"
                 />
                 <input
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email"               
                     value={user.email}
@@ -57,14 +57,6 @@ export default function Singup() {
                     onChange={handleSingup}
                     required="required"
                 />
-                {/* <input
-                    type="text"
-                    name="confirmPassword"
-                    placeholder="Confirme a senha"
-                    value={data.confirmPassword}
-                    onChange={handleInputChange}
-                    required="required"
-                /> */}
                 <button>Cadastrar</button>
                 <Link to={"/singin"}>Fazer Login!</Link>
           </FormUser>

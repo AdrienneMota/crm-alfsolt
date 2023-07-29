@@ -41,9 +41,12 @@ export default function ContactDetails(){
 }
 
 const ContainerDetails = styled.div`
-  background-color: aqua;
   width: 100vw;
   height: 100hw;
+  display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
 `
 
 const Details = styled.div`
@@ -55,14 +58,12 @@ const Details = styled.div`
     border: beige solid 1px; 
     background-color: aqua;
     .Photo{
-       background-color : purple;
        img{
         height: 141px;
         width: 141px;
        }
     }
     .Details{
-        background-color: pink;
         height: 141px;
         width: 141px;
         display: flex;
