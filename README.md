@@ -31,5 +31,9 @@ Para deixar a aplicação funcional no ambiente solicitado foi feito um build da
 
 ### `Refatoração do código`
 
-### `Uso de banco de dados e backend para melhor atender as regras do negócio`
+### `Uso de banco de dados relacional
+  Para melhor estruturar os dados da aplicação.
+
+### `Backend com api`
+  Para melhor atender as regras do negócio.
   
