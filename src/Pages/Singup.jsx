@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { createUser } from '../api/user'
 
 export default function Singup() {
+    const navigate = useNavigate()
     const [user, setUser] = useState({
         name: '',
         email: '',
@@ -21,6 +22,7 @@ export default function Singup() {
         try {
             createUser(user)
             alert('Usuário cadastrado com sucesso')
+            navigate("/signin")
         } catch (error) {
             alert('Erro no cadastro')
             console.log(error)

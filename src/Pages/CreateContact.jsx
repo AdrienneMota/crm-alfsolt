@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useEffect, useState } from "react"
 
 export default function CreatContact(){
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const [data, setData] = useState({
     name: '',
@@ -29,18 +29,23 @@ export default function CreatContact(){
   function createNewContact(e) {
     e.preventDefault();
     try {
-        const session = JSON.parse(localStorage.getItem("session"))
+        
+      const session = JSON.parse(localStorage.getItem("session"))
         if(!session){
             alert('Faça login')
             navigate('/singin')
         }
         const contact = {...data, user_id : session?.id}
+
         contactId ? updateContact(contact) : createContact(contact)
         alert('Contato salvo')
         navigate("/")
+
       } catch (error) {
+        
         alert("Houve um erro no login. Verifique os campos preenchidos.")
         console.log(error)
+
       }
     }
 
@@ -54,6 +59,7 @@ export default function CreatContact(){
                     name="name"
                     placeholder="Nome"
                     value={data.name}
+                    minLength="5"
                     onChange={handleContact}
                     required="required"
                 />
@@ -68,7 +74,9 @@ export default function CreatContact(){
                 <input
                     type="text"
                     name="contact"
-                    placeholder="Contact"               
+                    placeholder="Contact"  
+                    minLength="9"
+                    maxLength="9"             
                     value={data.contact}
                     onChange={handleContact}
                     required="required"

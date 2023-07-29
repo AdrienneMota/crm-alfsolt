@@ -9,8 +9,8 @@ function saveUsers(users) {
 export function createUser(user) {
     const users = getUsers();
 
-    // VALIDA OS DADOS DO USUÁRIO
-    // users.find(user => )
+
+    
     users.push({
         ...user,
         id: uuid()
@@ -50,3 +50,4 @@ export function getUserByEmail(email) {
     const users = getUsers();
     return users.find(user => user.email === email);
 }
+

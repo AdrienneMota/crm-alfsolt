@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { deleteContact, getContacts } from '../api/contacts'
+import { deleteContact, getContactsByUserId } from '../api/contacts'
+import ContactDetails from './ContactDetails'
 
 export default function Home(){   
      const navigate = useNavigate()
@@ -13,7 +14,13 @@ export default function Home(){
 
     function handleGetContacts() {
         try {
-            const data = getContacts()
+            const session = JSON.parse(localStorage.getItem("session"))
+            if(!(session && session.id)){
+                alert('Faça login')
+                navigate('/singin')
+            }
+
+            const data = getContactsByUserId(session.id)
             setContatos(data)
         } catch (error) {
             console.log(error)
@@ -30,13 +37,17 @@ export default function Home(){
         if(!result) return;
         deleteContact(contactId);
         handleGetContacts();
+    }
 
+    function handleDetailsContact(contactId) {
+        navigate(`/contactdetails/${contactId}`)
     }
 
     return(
         <ContainerMain>
             <Header>
                 alfasoft contatos 
+            <Link to={'/signin'} onClick={() => localStorage.removeItem("session")}>Sair</Link>
             </Header>
             <ContainerContacts>
             <Link to={'/createcontact'}>Adicionar</Link>
@@ -54,6 +65,7 @@ export default function Home(){
                                 <p>Telefone: {contato.contact} </p>
                                 <button type="button" onClick={() => handleDeleteContact(contato.id)}>Excluir</button>
                                 <button type="button" onClick={() => handleEditContact(contato.id)}>Alterar</button>
+                                <Link to={`/contactdetails/:id`} onClick={() => handleDetailsContact(contato.id)}>Details</Link>
                             </div>
                             </CardInformations>                
                     )

@@ -9,8 +9,12 @@ function saveContacts(contacts) {
 export function createContact(contact) {
     const contacts = getContacts();
 
-    // VALIDA OS DADOS DO CONTATO
-    // contacts.find(contact => )
+    const emailExist = getContactByEmail(contact.email)
+    const contactExist = getContactByContact(contact.contact)
+
+    if(emailExist || contactExist){
+        throw new Error('Contact already exist!');
+    }
 
     contacts.push({
         ...contact,
@@ -22,6 +26,14 @@ export function createContact(contact) {
 export function updateContact({id, ...contact}) {
     const savedContact = getContactById(id);
     if(!savedContact) throw new Error('Contact not found!');
+
+    const emailExist = getContactByEmail(contact.email)
+    const contactExist = getContactByContact(contact.contact)
+
+    if(emailExist || contactExist){
+        throw new Error('Contact already exist!');
+    }
+
     const contacts = getContacts();
     const index = contacts.findIndex(contact => contact.id === id);
     contacts[index] = {
@@ -42,7 +54,22 @@ export function getContacts() {
     return JSON.parse(localStorage.getItem(DEFAULT_CONTACTS_KEY)) || []
 }
 
+export function getContactsByUserId(userId) {
+    const contacts = getContacts();
+    return contacts.filter(contact => contact.user_id === userId)
+}
+
 export function getContactById(id) {
     const contacts = getContacts();
     return contacts.find(contact => contact.id === id);
+}
+
+export function getContactByEmail(email) {
+    const contacts = getContacts();
+    return contacts.find(contact => contact.email === email);
+}
+
+export function getContactByContact(contact) {
+    const contacts = getContacts();
+    return contacts.find(contact => contact.contact === contact);
 }
