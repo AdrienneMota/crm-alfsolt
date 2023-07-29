@@ -19,11 +19,6 @@ Você também pode ver erros de lint no console.
 Cria o aplicativo para produção na pasta `build`.\
 Ele empacota corretamente o React no modo de produção e otimiza a compilação para obter o melhor desempenho.
 
-### `npm run build`
-
-Cria o aplicativo para produção na pasta `build`.\
-Ele empacota corretamente o React no modo de produção e otimiza a compilação para obter o melhor desempenho.
-
 ### `build`
 
 Para deixar a aplicação funcional no ambiente solicitado foi feito um build da aplicação que foi transferido para o ambiente. 
