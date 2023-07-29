@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { getContacts } from '../api/contacts'
+import { deleteContact, getContacts } from '../api/contacts'
 
 export default function Home(){   
      const navigate = useNavigate()
     const [contatos, setContatos] = useState([])
 
     useEffect(() => {
+        handleGetContacts();
+    }, [])
+
+    function handleGetContacts() {
         try {
             const data = getContacts()
             setContatos(data)
@@ -15,14 +19,18 @@ export default function Home(){
             console.log(error)
         }
 
-    }, [])
+    }
 
-    function editContact(contactId) {
+    function handleEditContact(contactId) {
         navigate(`/createcontact/${contactId}`)
     }
 
-    function deleteContact(data) {
-        console.log(data)
+    function handleDeleteContact(contactId) {
+        const result = window.confirm("Vc tem certeza que deseja excluir esse contato?")
+        if(!result) return;
+        deleteContact(contactId);
+        handleGetContacts();
+
     }
 
     return(
@@ -44,8 +52,8 @@ export default function Home(){
                                 <p>Nome: {contato.name} </p>
                                 <p>Email: {contato.email} </p>
                                 <p>Telefone: {contato.contact} </p>
-                                <button type="button" onClick={() => deleteContact(contato.id)}>Excluir</button>
-                                <button type="button" onClick={() => editContact(contato.id)}>Alterar</button>
+                                <button type="button" onClick={() => handleDeleteContact(contato.id)}>Excluir</button>
+                                <button type="button" onClick={() => handleEditContact(contato.id)}>Alterar</button>
                             </div>
                             </CardInformations>                
                     )
