@@ -26,14 +26,6 @@ export function createContact(contact) {
 export function updateContact({id, ...contact}) {
     const savedContact = getContactById(id);
     if(!savedContact) throw new Error('Contact not found!');
-
-    const emailExist = getContactByEmail(contact.email)
-    const contactExist = getContactByContact(contact.contact)
-
-    if(emailExist || contactExist){
-        throw new Error('Contact already exist!');
-    }
-
     const contacts = getContacts();
     const index = contacts.findIndex(contact => contact.id === id);
     contacts[index] = {

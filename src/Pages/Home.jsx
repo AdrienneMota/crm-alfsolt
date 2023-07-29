@@ -16,8 +16,8 @@ export default function Home(){
         try {
             const session = JSON.parse(localStorage.getItem("session"))
             if(!(session && session.id)){
-                alert('Faça login')
-                navigate('/singin')
+                navigate('/signin')
+                return;
             }
 
             const data = getContactsByUserId(session.id)
@@ -65,7 +65,7 @@ export default function Home(){
                                 <p>Telefone: {contato.contact} </p>
                                 <button type="button" onClick={() => handleDeleteContact(contato.id)}>Excluir</button>
                                 <button type="button" onClick={() => handleEditContact(contato.id)}>Alterar</button>
-                                <Link to={`/contactdetails/:id`} onClick={() => handleDetailsContact(contato.id)}>Details</Link>
+                                <Link to={`/contactdetails/${contato.id}`} >Details</Link>
                             </div>
                             </CardInformations>                
                     )

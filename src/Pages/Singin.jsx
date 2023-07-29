@@ -32,7 +32,7 @@ export default function Signin(){
   return(
     <Container>
         <ContainerForm>
-            <p>Contacts</p>
+            <p>Login</p>
             <FormCard onSubmit={LoginUser}>
             <input
                 type="text"

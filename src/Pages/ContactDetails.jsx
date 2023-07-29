@@ -32,7 +32,6 @@ export default function ContactDetails(){
               <p>Nome: {data.name} </p>
               <p>Email: {data.email} </p>
               <p>Telefone: {data.contact} </p>
-              <button type="button" onClick={() => {}}>Detalhar</button>
               <Link to='/'>Voltar para home</Link>
           </div> 
           </Details>

@@ -33,7 +33,7 @@ export default function CreatContact(){
       const session = JSON.parse(localStorage.getItem("session"))
         if(!session){
             alert('Faça login')
-            navigate('/singin')
+            navigate('/signin')
         }
         const contact = {...data, user_id : session?.id}
 
@@ -64,7 +64,7 @@ export default function CreatContact(){
                     required="required"
                 />
                 <input
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email"               
                     value={data.email}
@@ -82,7 +82,7 @@ export default function CreatContact(){
                     required="required"
                 />
                 <input
-                    type="text"
+                    type="url"
                     name="image_url"
                     placeholder="Url imagem"               
                     value={data.image_url}
