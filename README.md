@@ -31,7 +31,7 @@ Para deixar a aplicação funcional no ambiente solicitado foi feito um build da
 
 ### `Refatoração do código`
 
-### `Uso de banco de dados relacional
+### `Uso de banco de dados relacional`
   Para melhor estruturar os dados da aplicação.
 
 ### `Backend com api`
