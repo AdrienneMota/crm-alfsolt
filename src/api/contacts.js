@@ -39,7 +39,7 @@ export function deleteContact(id) {
 }
 
 export function getContacts() {
-    return JSON.parse(localStorage.getItem(DEFAULT_CONTACTS_KEY) || [])
+    return JSON.parse(localStorage.getItem(DEFAULT_CONTACTS_KEY)) || []
 }
 
 export function getContactById(id) {

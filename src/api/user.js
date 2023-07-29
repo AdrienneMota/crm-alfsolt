@@ -11,7 +11,6 @@ export function createUser(user) {
 
     // VALIDA OS DADOS DO USUÁRIO
     // users.find(user => )
-
     users.push({
         ...user,
         id: uuid()
@@ -39,10 +38,15 @@ export function deleteUser(id) {
 }
 
 export function getUsers() {
-    return JSON.parse(localStorage.getItem(DEFAULT_USER_KEY) || [])
+    return JSON.parse(localStorage.getItem(DEFAULT_USER_KEY)) || []
 }
 
 export function getUserById(id) {
     const users = getUsers();
     return users.find(user => user.id === id);
+}
+
+export function getUserByEmail(email) {
+    const users = getUsers();
+    return users.find(user => user.email === email);
 }

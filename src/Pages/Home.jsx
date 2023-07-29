@@ -1,49 +1,42 @@
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-
-const contatos = [
-    { 
-        id: 1, 
-        nome: 'fulano',
-        email: 'fulano@gmail.com',
-        contato: '9999999999',
-        image: 'https://i.pinimg.com/564x/ee/19/6a/ee196a048191fcba45a2a1dab90e23e8.jpg'
-    },
-    { 
-        id: 2, 
-        nome: 'cicrano',
-        email: 'fulano@gmail.com',
-        contato: '9999999999',
-        image: 'https://i.pinimg.com/564x/ee/19/6a/ee196a048191fcba45a2a1dab90e23e8.jpg'
-    },
-    { 
-        id: 3, 
-        nome: 'fulano',
-        email: 'fulaninho@gmail.com',
-        contato: '9999999999',
-        image: 'https://i.pinimg.com/564x/ee/19/6a/ee196a048191fcba45a2a1dab90e23e8.jpg'
-    },
-
-]
+import { getContacts } from '../api/contacts'
 
 export default function Home(){
+
+    const [contatos, setContatos] = useState([])
+
+    useEffect(() => {
+        try {
+            const data = getContacts()
+            console.log({ data })
+            setContatos(data)
+        } catch (error) {
+            console.log(error)
+        }
+
+    }, [])
+
     return(
         <ContainerMain>
             <Header>
                 alfasoft contatos 
             </Header>
             <ContainerContacts>
+            <Link to={'/createcontact'}>Adicionar</Link>
                 <ListContacts>
                 {
                     contatos?.map( 
                         (contato) => 
                         <CardInformations key={'cardinformations-box' + contato.id}>
                             <div className='Photo'>
-                                <img src={contato.image}/>
+                                <img src={contato.image_url}/>
                             </div>
                             <div className='Details'>
-                                <p>Nome: {contato.nome} </p>
+                                <p>Nome: {contato.name} </p>
                                 <p>Email: {contato.email} </p>
-                                <p>Telefone: {contato.nome} </p>
+                                <p>Telefone: {contato.contact} </p>
                                 <button>Deletar</button>
                                 <button>Alterar</button>
                             </div>
