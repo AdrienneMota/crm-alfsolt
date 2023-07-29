@@ -1,22 +1,29 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { getContacts } from '../api/contacts'
 
-export default function Home(){
-
+export default function Home(){   
+     const navigate = useNavigate()
     const [contatos, setContatos] = useState([])
 
     useEffect(() => {
         try {
             const data = getContacts()
-            console.log({ data })
             setContatos(data)
         } catch (error) {
             console.log(error)
         }
 
     }, [])
+
+    function editContact(contactId) {
+        navigate(`/createcontact/${contactId}`)
+    }
+
+    function deleteContact(data) {
+        console.log(data)
+    }
 
     return(
         <ContainerMain>
@@ -37,8 +44,8 @@ export default function Home(){
                                 <p>Nome: {contato.name} </p>
                                 <p>Email: {contato.email} </p>
                                 <p>Telefone: {contato.contact} </p>
-                                <button>Deletar</button>
-                                <button>Alterar</button>
+                                <button type="button" onClick={() => deleteContact(contato.id)}>Excluir</button>
+                                <button type="button" onClick={() => editContact(contato.id)}>Alterar</button>
                             </div>
                             </CardInformations>                
                     )

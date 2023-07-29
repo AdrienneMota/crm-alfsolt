@@ -22,7 +22,7 @@ export function updateUser({id, ...user}) {
     const savedUser = getUserById(id);
     if(!savedUser) throw new Error('User not found!');
     const users = getUsers();
-    const index = users.indexOf(users);
+    const index = users.findIndex(user => user.id === id);
     users[index] = {
         ...users[index],
         ...user

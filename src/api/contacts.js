@@ -23,7 +23,7 @@ export function updateContact({id, ...contact}) {
     const savedContact = getContactById(id);
     if(!savedContact) throw new Error('Contact not found!');
     const contacts = getContacts();
-    const index = contacts.indexOf(contacts);
+    const index = contacts.findIndex(contact => contact.id === id);
     contacts[index] = {
         ...contacts[index],
         ...contact

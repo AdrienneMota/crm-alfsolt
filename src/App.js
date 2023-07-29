@@ -16,6 +16,7 @@ function App() {
         <Route path='/singup' element={<Singup/>}></Route>
         <Route path='/singin' element={<Singin/>}></Route>
         <Route path='/createcontact' element={<CreatContact/>}></Route>
+        <Route path='/createcontact/:id' element={<CreatContact/>}></Route>
       </Routes>
     </BrowserRouter>
   );

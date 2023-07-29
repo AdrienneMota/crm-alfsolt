@@ -1,7 +1,7 @@
-import { useNavigate, Link } from "react-router-dom"
-import { createContact } from "../api/contacts"
+import { useNavigate, Link, useParams } from "react-router-dom"
+import { createContact, getContactById, updateContact } from "../api/contacts"
 import styled from 'styled-components'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function CreatContact(){
     const navigate = useNavigate()
@@ -12,6 +12,14 @@ export default function CreatContact(){
     contact: '',
     image_url: '',
   })
+  const { id: contactId } = useParams();
+
+  useEffect(() => {
+    if(contactId) {
+      const contact = getContactById(contactId);
+      setData(contact)
+    }
+  }, []) 
 
   const handleContact = (evt) => {
     const { name, value } = evt.target
@@ -27,7 +35,7 @@ export default function CreatContact(){
             navigate('/singin')
         }
         const contact = {...data, user_id : session?.id}
-        createContact(contact)
+        contactId ? updateContact(contact) : createContact(contact)
         alert('Contato salvo')
         navigate("/")
       } catch (error) {
